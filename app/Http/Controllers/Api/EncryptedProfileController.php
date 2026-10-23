@@ -24,7 +24,7 @@ class EncryptedProfileController extends Controller
         if (ctype_digit($identifier) && strlen($identifier) <= 10) {
             return response()->json([
                 'message' => 'kita butuh garam garam garam',
-                'hint' => 'semua cabang saling terhubung, terkadang kita butuh garam, garam+1 adalah koenci',
+                'hint' => 'semua cabang saling terhubung, terkadang kita butuh garam. garam+1 adalah koenci. harapanku kamu mengunjungi /api/profile/75170fc230cd88f32e475ff4087f81d9 - bongkar dulu isinya ya ;)',
             ], 422);
         }
 
