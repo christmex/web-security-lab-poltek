@@ -1,0 +1,35 @@
+- generic [ref=e2]:
+  - generic [ref=e36]:
+    - generic [ref=e40]:
+      - list [ref=e42]:
+        - listitem [ref=e43]:
+          - link "Laravel" [ref=e44] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=e51]:
+        - generic [ref=e52]: Platform
+        - list [ref=e53]:
+          - listitem [ref=e54]:
+            - link "Dashboard" [ref=e55] [cursor=pointer]:
+              - /url: /dashboard
+      - generic [ref=e62]:
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - link "Repository" [ref=e67] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+          - listitem [ref=e74]:
+            - link "Documentation" [ref=e75] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+        - list [ref=e79]:
+          - listitem [ref=e80]:
+            - button "A Attacker" [ref=e81]:
+              - generic [ref=e82]: A
+              - generic [ref=e84]: Attacker
+    - main [ref=e89]:
+      - generic [ref=e91]:
+        - button "Toggle sidebar" [ref=e92]
+        - navigation "breadcrumb" [ref=e94]:
+          - list [ref=e95]:
+            - listitem [ref=e96]:
+              - link "Dashboard" [disabled] [ref=e97]
+      - heading "Selamat datang, Attacker" [level=1] [ref=e99]
+  - region "Notifications alt+T"

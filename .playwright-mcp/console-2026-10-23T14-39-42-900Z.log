@@ -1,0 +1,2 @@
+[   23047ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://web-security-lab-poltek.test/api/profile/2:0
+[   59294ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Content) @ http://web-security-lab-poltek.test/api/profile/1:0

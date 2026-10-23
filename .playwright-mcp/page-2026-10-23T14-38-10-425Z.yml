@@ -1,0 +1,24 @@
+- generic [ref=f2e2]:
+  - generic [ref=f2e5]:
+    - generic [ref=f2e6]:
+      - link "Reset password" [ref=f2e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f2e12]:
+        - heading "Reset password" [level=1] [ref=f2e13]
+        - paragraph [ref=f2e14]: Please enter your new password below
+    - generic [ref=f2e16]:
+      - generic [ref=f2e17]:
+        - generic [ref=f2e18]: Email
+        - textbox "Email" [ref=f2e19]: victim1@example.com
+      - generic [ref=f2e20]:
+        - generic [ref=f2e21]: Password
+        - generic [ref=f2e22]:
+          - textbox "Password" [ref=f2e23]: hacked123
+          - button "Show password" [ref=f2e24]
+      - generic [ref=f2e28]:
+        - generic [ref=f2e29]: Confirm password
+        - generic [ref=f2e30]:
+          - textbox "Confirm password" [active] [ref=f2e31]: hacked123
+          - button "Show password" [ref=f2e32]
+      - button "Reset password" [ref=f2e36]
+  - region "Notifications alt+T"

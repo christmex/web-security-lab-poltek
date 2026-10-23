@@ -1,0 +1,35 @@
+- generic [ref=f4e2]:
+  - generic [ref=f4e3]:
+    - generic [ref=f4e7]:
+      - list [ref=f4e9]:
+        - listitem [ref=f4e10]:
+          - link "Laravel" [ref=f4e11] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=f4e18]:
+        - generic [ref=f4e19]: Platform
+        - list [ref=f4e20]:
+          - listitem [ref=f4e21]:
+            - link "Dashboard" [ref=f4e22] [cursor=pointer]:
+              - /url: /dashboard
+      - generic [ref=f4e29]:
+        - list [ref=f4e32]:
+          - listitem [ref=f4e33]:
+            - link "Repository" [ref=f4e34] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+          - listitem [ref=f4e41]:
+            - link "Documentation" [ref=f4e42] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+        - list [ref=f4e46]:
+          - listitem [ref=f4e47]:
+            - button "VO Victim One" [ref=f4e48]:
+              - generic [ref=f4e49]: VO
+              - generic [ref=f4e51]: Victim One
+    - main [ref=f4e56]:
+      - generic [ref=f4e58]:
+        - button "Toggle sidebar" [ref=f4e59]
+        - navigation "breadcrumb" [ref=f4e61]:
+          - list [ref=f4e62]:
+            - listitem [ref=f4e63]:
+              - link "Dashboard" [disabled] [ref=f4e64]
+      - heading "Selamat datang, Victim One" [level=1] [ref=f4e66]
+  - region "Notifications alt+T"
