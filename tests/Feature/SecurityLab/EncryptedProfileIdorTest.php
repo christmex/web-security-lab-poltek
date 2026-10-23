@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Support\ProfileIdentifier;
 
 /*
- * SECURITY LAB — BRANCH 3: hashed-id challenge. identifier = md5(salt . id).
+ * SECURITY LAB — BRANCH 3: hashed-id challenge. identifier = md5(salt . '+' . id).
  * The salt is the only thing between an attacker and the same IDOR as before.
  */
 
@@ -21,7 +21,7 @@ it('lets an attacker who knows the salt forge any identifier (IDOR)', function (
     $victim = User::factory()->create(['email' => 'victim@example.com']);
 
     // Attacker reproduces the identifier from the leaked salt + target id.
-    $identifier = md5(config('lab.salt').$victim->id);
+    $identifier = md5(config('lab.salt').'+'.$victim->id);
 
     $this->actingAs($attacker)->getJson("/api/profile/{$identifier}")
         ->assertOk()
@@ -33,7 +33,7 @@ it('rejects an identifier built with the wrong salt', function () {
     $attacker = User::factory()->create();
     $victim = User::factory()->create();
 
-    $wrong = md5('not-the-real-salt'.$victim->id);
+    $wrong = md5('not-the-real-salt'.'+'.$victim->id);
 
     $this->actingAs($attacker)->getJson("/api/profile/{$wrong}")
         ->assertStatus(404);
@@ -41,5 +41,5 @@ it('rejects an identifier built with the wrong salt', function () {
 
 it('helper matches a raw md5 of salt and id', function () {
     expect(ProfileIdentifier::for(2, 'Y0uM16htN33dM3'))
-        ->toBe(md5('Y0uM16htN33dM32'));
+        ->toBe(md5('Y0uM16htN33dM3+2'));
 });
