@@ -38,7 +38,11 @@ class EncryptedProfileController extends Controller
             ], 404);
         }
 
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if ($user === null) {
+            return response()->json(['message' => 'User tidak ditemukan.'], 404);
+        }
 
         $user->makeVisible([
             'password',
