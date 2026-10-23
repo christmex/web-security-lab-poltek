@@ -39,6 +39,14 @@ it('rejects an identifier built with the wrong salt', function () {
         ->assertStatus(404);
 });
 
+it('redirects the example hint identifier to the rickroll', function () {
+    $attacker = User::factory()->create();
+
+    $this->actingAs($attacker)
+        ->get('/api/profile/75170fc230cd88f32e475ff4087f81d9')
+        ->assertRedirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+});
+
 it('helper matches a raw md5 of salt and id', function () {
     expect(ProfileIdentifier::for(2, 'Y0uM16htN33dM3'))
         ->toBe(md5('Y0uM16htN33dM3+2'));

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Support\ProfileIdentifier;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * SECURITY LAB — BRANCH 3 (challenge).
@@ -18,13 +19,23 @@ use Illuminate\Http\JsonResponse;
  */
 class EncryptedProfileController extends Controller
 {
-    public function show(string $identifier): JsonResponse
+    /** The "example" identifier from the hint is a rickroll trap. */
+    private const RICKROLL_IDENTIFIER = '75170fc230cd88f32e475ff4087f81d9';
+
+    private const RICKROLL_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
+    public function show(string $identifier): JsonResponse|RedirectResponse
     {
+        // The hint's "example correct URL" is bait: send them to the rickroll.
+        if (strtolower($identifier) === self::RICKROLL_IDENTIFIER) {
+            return redirect()->away(self::RICKROLL_URL);
+        }
+
         // Someone is still trying the old numeric id -> nudge them toward the salt.
         if (ctype_digit($identifier) && strlen($identifier) <= 10) {
             return response()->json([
                 'message' => 'kita butuh garam garam garam',
-                'hint' => 'semua cabang saling terhubung, terkadang kita butuh garam. garam+1 adalah koenci. harapanku kamu mengunjungi /api/profile/75170fc230cd88f32e475ff4087f81d9 - bongkar dulu isinya ya ;)',
+                'hint' => 'semua cabang saling terhubung, terkadang kita butuh garam. garam+1 adalah koenci. contoh url yg benar untuk IDOR /api/profile/75170fc230cd88f32e475ff4087f81d9',
             ], 422);
         }
 
