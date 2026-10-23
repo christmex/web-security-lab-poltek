@@ -21,7 +21,11 @@ class AuthenticatedProfileController extends Controller
 {
     public function show(string $id): JsonResponse
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        if ($user === null) {
+            return response()->json(['message' => 'User tidak ditemukan.'], 404);
+        }
 
         $user->makeVisible([
             'password',
