@@ -24,7 +24,7 @@ class EncryptedProfileController extends Controller
         if (ctype_digit($identifier) && strlen($identifier) <= 10) {
             return response()->json([
                 'message' => 'kita butuh garam garam garam',
-                'hint' => 'id di URL sudah di-hash. Ambil salt (ingat branch 2), lalu identifier = md5(salt + id).',
+                'hint' => 'semua cabang saling terhubung, terkadang kita butuh garam, garam+1 adalah koenci',
             ], 422);
         }
 

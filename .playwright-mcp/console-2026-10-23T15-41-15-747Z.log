@@ -1,0 +1,2 @@
+[    8153ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Content) @ http://web-security-lab-poltek.test/api/profile/1:0
+[    8529ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://web-security-lab-poltek.test/api/profile/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:0
