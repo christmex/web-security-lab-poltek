@@ -1,11 +1,11 @@
 <?php
 
 use App\Models\User;
-use App\Support\LabCipher;
+use App\Support\ProfileIdentifier;
 
 /*
- * SECURITY LAB — BRANCH 3: encrypted-id challenge. The salt-derived cipher is
- * the only thing standing between an attacker and the same IDOR as before.
+ * SECURITY LAB — BRANCH 3: hashed-id challenge. identifier = md5(salt . id).
+ * The salt is the only thing between an attacker and the same IDOR as before.
  */
 
 it('returns the salt hint when a plain numeric id is used', function () {
@@ -21,7 +21,7 @@ it('lets an attacker who knows the salt forge any identifier (IDOR)', function (
     $victim = User::factory()->create(['email' => 'victim@example.com']);
 
     // Attacker reproduces the identifier from the leaked salt + target id.
-    $identifier = (new LabCipher(config('lab.salt')))->encryptId($victim->id);
+    $identifier = md5(config('lab.salt').$victim->id);
 
     $this->actingAs($attacker)->getJson("/api/profile/{$identifier}")
         ->assertOk()
@@ -29,18 +29,17 @@ it('lets an attacker who knows the salt forge any identifier (IDOR)', function (
         ->assertJsonStructure(['id', 'email', 'password_reset_token']);
 });
 
-it('rejects an identifier forged with the wrong salt', function () {
+it('rejects an identifier built with the wrong salt', function () {
     $attacker = User::factory()->create();
     $victim = User::factory()->create();
 
-    $wrong = (new LabCipher('not-the-real-salt'))->encryptId($victim->id);
+    $wrong = md5('not-the-real-salt'.$victim->id);
 
     $this->actingAs($attacker)->getJson("/api/profile/{$wrong}")
         ->assertStatus(404);
 });
 
-it('round-trips an id through the cipher', function () {
-    $cipher = new LabCipher('Y0uM16htN33dM3');
-
-    expect($cipher->decryptId($cipher->encryptId(42)))->toBe('42');
+it('helper matches a raw md5 of salt and id', function () {
+    expect(ProfileIdentifier::for(2, 'Y0uM16htN33dM3'))
+        ->toBe(md5('Y0uM16htN33dM32'));
 });
